@@ -1,22 +1,26 @@
 import React from 'react';
 
-import { Button } from './Button';
-import './header.css';
+// import { Button } from './Button';
+// import './header.css';
+import useScrollDirection from '@/hooks/useScrollDirection';
+
+import styles from './header.module.css';
 
 type User = {
   name: string;
 };
 
 interface HeaderProps {
-  user?: User;
-  onLogin: () => void;
-  onLogout: () => void;
-  onCreateAccount: () => void;
+  // user?: User;
+  // onLogin: () => void;
+  // onLogout: () => void;
+  // onCreateAccount: () => void;
 }
 
-export const Header = ({ user, onLogin, onLogout, onCreateAccount }: HeaderProps) => (
-  <header>
-    <div className="storybook-header">
+export const Header = ({}: HeaderProps) => {
+  const direction = useScrollDirection();
+
+  return <header className={`${styles.header} ${direction === "down" ? styles["header-shrunk"] : ""}`}>
       <div>
         <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
           <g fill="none" fillRule="evenodd">
@@ -34,9 +38,8 @@ export const Header = ({ user, onLogin, onLogout, onCreateAccount }: HeaderProps
             />
           </g>
         </svg>
-        <h1>Acme</h1>
       </div>
-      <div>
+      {/* <div>
         {user ? (
           <>
             <span className="welcome">
@@ -50,7 +53,6 @@ export const Header = ({ user, onLogin, onLogout, onCreateAccount }: HeaderProps
             <Button primary size="small" onClick={onCreateAccount} label="Sign up" />
           </>
         )}
-      </div>
-    </div>
-  </header>
-);
+      </div> */}
+    </header>
+};
